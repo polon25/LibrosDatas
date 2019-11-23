@@ -1,2 +1,2 @@
 # LibrosDatas
-Python script for managing a data base of own books.
+Python script for managing a SQLite data base of owned books.
