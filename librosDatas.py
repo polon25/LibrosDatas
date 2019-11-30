@@ -8,6 +8,7 @@ by Jacek Piłka
 import sqlite3
 from os import path
 import tkinter as tk
+from tkinter import messagebox as msb
 import tkinter.ttk as ttk
 
 
@@ -205,9 +206,9 @@ class printListWindow:
             idBook=self.bookList[self.bookIDChoose]
         else:
             return 0
-        if tk.messagebox.askokcancel("Remove", "Do you want to remove this book?"):
+        if msb.askokcancel("Remove", "Do you want to remove this book?"):
             removeBook(con,idBook)
-            tk.messagebox.showinfo("Removed", "The book has been removed")
+            msb.showinfo("Removed", "The book has been removed")
             
     def quit(self):
         self.window.destroy()
