@@ -36,7 +36,7 @@ def addBook(con):
 def removeBook(con):
     remID=input("ID of the book for removing (0 will cancel this operation): ")
     if not remID==0:
-        con.execute("DELETE FROM books WHERE id=?", remID)
+        con.execute("DELETE FROM books WHERE id="+str(remID))
         con.commit()
         print ("Book " + str(remID) +" was removed!")
     return 1
@@ -53,7 +53,7 @@ def readAll(db):
 def bookInfo(con, bookID):  
     try:
         while True:
-            cursor=con.execute("SELECT * FROM books WHERE id=?",bookID)
+            cursor=con.execute("SELECT * FROM books WHERE id="+str(bookID))
             rows=cursor.fetchall()
             row=rows[0]
             for i,desc in enumerate(cursor.description):

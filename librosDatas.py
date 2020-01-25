@@ -167,6 +167,7 @@ class printListWindow:
         self.scrollbar = tk.Scrollbar(self.window)
         self.scrollbar.place(in_=self.bookListBox, relx = 1., rely = 0, relheight = 1.)
         self.scrollbar.config(command = self.bookListBox.yview)
+        self.bookListBox.config(yscrollcommand=self.scrollbar.set)
         self.bookListBox.bind('<<ListboxSelect>>', self.listBoxSelect)
             
         infoButt=tk.Button(self.window)
@@ -224,7 +225,7 @@ class infoWindow:
         self.window.mainloop()
         
     def getBookInfo(self,idBook):
-        cursor=con.execute("SELECT * FROM books WHERE id=?",str(idBook))
+        cursor=con.execute("SELECT * FROM books WHERE id="+str(idBook))
         rows=cursor.fetchall()
         row=rows[0]
         for i,desc in enumerate(cursor.description):
@@ -386,7 +387,7 @@ def searchBook(con,searchArg,searchVal):
 
 def removeBook(con,idBook):
     if not idBook==0:
-        con.execute("DELETE FROM books WHERE id=?", idBook)
+        con.execute("DELETE FROM books WHERE id="+str(idBook))
         con.commit()
         print ("Book " + str(idBook) +" was removed!")
     return 1
